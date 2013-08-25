@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Client Socket</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript">
+            var host = "ws://127.0.0.1:12346/server_exemple.php";
+            socket = new WebSocket(host);
+            socket.onopen = function(msg){ // Si la connexion a été ouverte on login l'utilisateur avec un token || id.
+                socket.send('{"login": "token"}');
+                alert("Login succès.");
+            };
+            
+            socket.onmessage = function(msg){ 
+                alert("Oh, un nouveau message du serveur: "+msg.data); // Quand le serveur fait un $this->sending("coucou");
+            };
+            
+            socket.onclose   = function(msg){ 
+                alert("Arf... une erreur et survenue: "+this.readyState); // Je vous conseil de faire un systeme de reconnexion auto avec un lamps de temps.
+            };
+            
+            function Send(msg) {
+                socket.send(msg);
+            }
+            
+            function Deconnexion() {
+                socket.close();
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" onclick="Send('message');" value="Send." />
+        <input type="button" onclick="Deconnexion();" value="Deconnexion." />
+    </body>
+</html>
