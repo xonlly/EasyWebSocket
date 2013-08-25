@@ -8,7 +8,14 @@ Son Token/ID sera disponible tout le temps de la session du socket, Il et possib
 si par exemple l'utilisateur a ouvert plusieurs onglets.
 
 <h2>Run</h2>
-Le serveur PHP doit etre lancé sur le serveur avec:
+Le serveur PHP doit etre lancé sur le serveur avec:<br />
 <code>
 php -q server_exemple.php
 </code>
+
+<b>Attention</b>, ne pas oublier:<br />
+<code>
+new ExempleClass("0.0.0.0", 12346);
+</code>
+
+0.0.0.0: Autorise toutes les IP
